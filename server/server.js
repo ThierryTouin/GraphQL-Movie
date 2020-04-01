@@ -8,7 +8,10 @@ const schema = require('./schema/schema');
 const app = express();
 
 // Remplacer avec ton url mlab
-const MONGO_URI = 'mongodb://robinuser:robinuser@ds245347.mlab.com:45347/dbrobin001';
+//const MONGO_URI = 'mongodb://robinuser:robinuser@ds245347.mlab.com:45347/dbrobin001';
+//const MONGO_URI = 'mongodb://admin:admin@cluster0-gzjcw.mongodb.net/test?retryWrites=true&w=majority';
+//const MONGO_URI = 'mongodb://admin:admin@cluster0-rsha9.mongodb.net/test?retryWrites=true&w=majority';
+const MONGO_URI = 'mongodb://admin:admin@127.0.0.1:27017/mongodb';
 if (!MONGO_URI) {
   throw new Error('Tu dois fournir une url mongoDB');
 }
@@ -16,7 +19,8 @@ if (!MONGO_URI) {
 mongoose.Promise = global.Promise;
 mongoose.connect(MONGO_URI, 
 {
-  useMongoClient:true
+  useNewUrlParser: true,
+  useUnifiedTopology: true
 });
 mongoose.connection
     .once('open', () => console.log('Connecté à MongoLab'))
