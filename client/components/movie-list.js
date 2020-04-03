@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { graphql } from 'react-apollo';
+import { graphql , compose } from 'react-apollo';
 import { Link } from 'react-router';
 import readMoviesQuery from "../queries/readMovies";
+import deleteMoviesMutation from "../queries/deleteMovies";
 
 class MovieList extends Component {
     render() {
@@ -23,9 +24,13 @@ class MovieList extends Component {
     }
 
 renderMovies() {
-    if (!this.props.data.loading) {
-        return this.props.data.movies.map( (movie => {
-            return <li className="collection-item" key={movie.id}>{movie.title}</li>
+    if (!this.props.readMoviesQuery.loading) {
+        return this.props.readMoviesQuery.movies.map( (movie => {
+            return (
+            <li className="collection-item" key={movie.id}>
+                {movie.title}
+                <i className="material-icons secondary-content delete_button" onClick={ () => this.onDeleteMovie(movie.id)}>delete</i>
+            </li>)
         }))    
     } else {
         return "Chargement des données...";
@@ -34,8 +39,28 @@ renderMovies() {
     
 }
 
+onDeleteMovie(id) {
+
+    console.log("id to delete : ",id);
+    this.props.deleteMoviesMutation({
+        variables:{
+            id
+        }
+    }).then( () => {
+        this.props.readMoviesQuery.refetch();
+    })
+}
+
+
 }
 
 
 
-export default graphql(readMoviesQuery) (MovieList);
+export default compose(
+    graphql(readMoviesQuery, { 
+        name : "readMoviesQuery"
+    }),
+    graphql(deleteMoviesMutation, { 
+        name : "deleteMoviesMutation"
+    })
+) (MovieList);
