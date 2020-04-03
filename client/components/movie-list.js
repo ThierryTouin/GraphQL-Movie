@@ -9,9 +9,9 @@ class MovieList extends Component {
         console.log(this.props);
         return (
             <div>
-                Liste de films
+                <h1>Liste de films</h1>
 
-                <ul>
+                <ul className="collection">
                     {this.renderMovies()}
                 </ul>
 
@@ -22,7 +22,7 @@ class MovieList extends Component {
 renderMovies() {
     if (!this.props.data.loading) {
         return this.props.data.movies.map( (movie => {
-            return <li key={movie.id}>{movie.title}</li>
+            return <li className="collection-item" key={movie.id}>{movie.title}</li>
         }))    
     } else {
         return "Chargement des données...";
