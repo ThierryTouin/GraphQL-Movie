@@ -8,7 +8,9 @@ import MovieList from './components/movie-list';
 import MovieCreate from './components/movie-create';
 import MovieDetail from './components/movie-detail';
 
-const client = new ApolloClient ({});
+const client = new ApolloClient ({
+  dataIdFromObject : o => o.id
+});
 
 const Root = () => {
   return (

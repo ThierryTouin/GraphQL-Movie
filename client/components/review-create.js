@@ -39,6 +39,7 @@ class ReviewCreate extends Component {
                     content: this.state.terms,
                     movieId: this.props.movieId
                 },
+                /* ne sert plus a rien car dans index.js : il y a maintenant dataIdFromObject : o => o.id dans le client Appolo
                 refetchQueries: [
                     { 
                         query : readMovieQuery,
@@ -47,6 +48,7 @@ class ReviewCreate extends Component {
                         }
                     }
                 ]
+                */
             }).then( () => {
                 this.setState({ terms : ""}); 
 
