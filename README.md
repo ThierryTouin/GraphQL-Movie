@@ -40,3 +40,9 @@ mutation {
   }   
 }
 ```
+
+NB: la requête suivante fonctionne
+```
+http://localhost:4000/graphql?query=query{movies{id,title}}
+
+```

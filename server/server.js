@@ -29,7 +29,7 @@ mongoose.connection
 app.use(bodyParser.json());
 app.use('/graphql', expressGraphQL({
   schema,
-  graphiql: true,
+  graphiql: true,   // mettre à false en production
 }));
 
 const webpackMiddleware = require('webpack-dev-middleware');
