@@ -19,7 +19,7 @@ class MovieCreate extends Component {
                         className="validate"
                         onChange={ e => this.setState( {terms: e.target.value}) }
                         onKeyPress={ this.handleSubmitForm.bind(this)}
-                />        
+                    />        
                 <label className="active">Titre</label>
                 </form>
 

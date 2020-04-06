@@ -28,7 +28,8 @@ renderMovies() {
         return this.props.readMoviesQuery.movies.map( (movie => {
             return (
             <li className="collection-item" key={movie.id}>
-                {movie.title}
+                <Link to={`/movie/${movie.id}`}>{movie.title}</Link>
+                
                 <i className="material-icons secondary-content delete_button" onClick={ () => this.onDeleteMovie(movie.id)}>delete</i>
             </li>)
         }))    

@@ -6,7 +6,7 @@ import { ApolloProvider } from "react-apollo";
 import { Router, Route, hashHistory, IndexRedirect } from "react-router";
 import MovieList from './components/movie-list';
 import MovieCreate from './components/movie-create';
-
+import MovieDetail from './components/movie-detail';
 
 const client = new ApolloClient ({});
 
@@ -19,6 +19,7 @@ const Root = () => {
         <IndexRedirect to="/movies"/>
         <Route path="/movies" component={MovieList}/>
         <Route path="/movies/create" component={MovieCreate}/>
+        <Route path="/movie/:id" component={MovieDetail} />
       </Route>
     </Router>
 
